@@ -27,7 +27,7 @@ pipeline {
             sh 'cd ~/.jenkins/workspace/my-pipeline_main/build/libs'
             sh 'pwd'
             sh 'ls -a'
-           // sh 'java -jar overly-designed-security-0.0.1-SNAPSHOT.jar'
+            sh 'java -jar ./build/libs/overly-designed-security-0.0.1-SNAPSHOT.jar'
         }
 
       }
