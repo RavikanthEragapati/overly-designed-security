@@ -25,7 +25,9 @@ pipeline {
         echo 'This is deploy stage - Executing'
         script{
             sh 'cd ~/.jenkins/workspace/my-pipeline_main/build/libs'
-            sh 'java -jar overly-designed-security-0.0.1-SNAPSHOT.jar'
+            sh 'pwd'
+            sh 'ls -a'
+           // sh 'java -jar overly-designed-security-0.0.1-SNAPSHOT.jar'
         }
 
       }
