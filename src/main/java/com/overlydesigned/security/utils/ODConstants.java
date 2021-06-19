@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -20,12 +21,18 @@ public final class ODConstants {
     public static final String idForPBKDF2Encode = "pbkdf2";
     public static final String idForScryptEncode = "scrypt";
 
-    public static final Map<String, PasswordEncoder> PASSWORD_ENCODER_MAP = Map.of(
-            idForNoPassEncode, NoOpPasswordEncoder.getInstance(),
-            idForBcryptEncode, new BCryptPasswordEncoder(),
-            idForPBKDF2Encode, new Pbkdf2PasswordEncoder(),
-            idForScryptEncode, new SCryptPasswordEncoder());
+    public static final Map<String, PasswordEncoder> PASSWORD_ENCODER_MAP = buildEncoderMap();
 
     public static final String USER_NOT_FOUND = " user not found in the system";
+
+
+    public static Map<String, PasswordEncoder> buildEncoderMap() {
+        Map<String, PasswordEncoder> passwordEncoder = new HashMap<String, PasswordEncoder>();
+        passwordEncoder.put(idForNoPassEncode, NoOpPasswordEncoder.getInstance());
+        passwordEncoder.put(idForBcryptEncode, new BCryptPasswordEncoder());
+        passwordEncoder.put(idForPBKDF2Encode, new Pbkdf2PasswordEncoder());
+        passwordEncoder.put(idForScryptEncode, new SCryptPasswordEncoder());
+        return passwordEncoder;
+    }
 
 }
