@@ -12,16 +12,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 @CheckOnlyOneIsNotNullArray({
-        @CheckOnlyOneIsNotNull(fieldNames = {"abc", "xyz"}),
-        @CheckOnlyOneIsNotNull(fieldNames = {"def","uvw"})
+        @CheckOnlyOneIsNotNull(fieldNames = {"field1", "field2"}),
+        @CheckOnlyOneIsNotNull(fieldNames = {"field3","field4"})
 })
 public class CustomRequest {
 
-    private String abc;
+    private String field1;
 
-    private String xyz;
+    private String field2;
 
-    private String def;
+    private String field3;
 
-    private String uvw;
+    private String field4;
 }

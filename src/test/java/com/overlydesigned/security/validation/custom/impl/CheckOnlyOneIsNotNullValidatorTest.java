@@ -27,19 +27,19 @@ public class CheckOnlyOneIsNotNullValidatorTest {
 
     @Test
     public void isValid_shouldReturnFalse_whenBothAppIdAndAppGroupAreGiven() {
-        when(hasOnlyOneValue.fieldNames()).thenReturn(new String[]{"abc", "xyz"});
+        when(hasOnlyOneValue.fieldNames()).thenReturn(new String[]{"field1", "field2"});
         hasOnlyOneValueValidator.initialize(hasOnlyOneValue);
 
         CustomRequest request = CustomRequest.builder()
-                .abc("abc")
-                .xyz("xyz")
+                .field1("field1")
+                .field2("field2")
                 .build();
         assertFalse(hasOnlyOneValueValidator.isValid(request, context));
     }
 
     @Test
     public void isValid_shouldReturnFalse_whenBothAppIdAndAppGroupAreNotGiven() {
-        when(hasOnlyOneValue.fieldNames()).thenReturn(new String[]{"abc", "xyz"});
+        when(hasOnlyOneValue.fieldNames()).thenReturn(new String[]{"field1", "field2"});
         hasOnlyOneValueValidator.initialize(hasOnlyOneValue);
 
         CustomRequest request = CustomRequest.builder()
@@ -49,34 +49,34 @@ public class CheckOnlyOneIsNotNullValidatorTest {
 
     @Test
     public void isValid_shouldReturnTrue_whenOnlyAppGroupIsGiven() {
-        when(hasOnlyOneValue.fieldNames()).thenReturn(new String[]{"abc", "xyz"});
+        when(hasOnlyOneValue.fieldNames()).thenReturn(new String[]{"field1", "field2"});
         hasOnlyOneValueValidator.initialize(hasOnlyOneValue);
 
         CustomRequest request = CustomRequest.builder()
-                .abc("abc")
+                .field1("field1")
                 .build();
         assertTrue(hasOnlyOneValueValidator.isValid(request, context));
     }
 
     @Test
     public void isValid_shouldReturnTrue_whenOnlyAppIdIsGiven() {
-        when(hasOnlyOneValue.fieldNames()).thenReturn(new String[]{"abc", "xyz"});
+        when(hasOnlyOneValue.fieldNames()).thenReturn(new String[]{"field1", "field2"});
         hasOnlyOneValueValidator.initialize(hasOnlyOneValue);
 
         CustomRequest request = CustomRequest.builder()
-                .xyz("xyz")
+                .field2("field2")
                 .build();
         assertTrue(hasOnlyOneValueValidator.isValid(request, context));
     }
 
     @Test
     public void isValid_shouldThrowException_whenInvalidFieldIsGiven() {
-        when(hasOnlyOneValue.fieldNames()).thenReturn(new String[]{"InvalidField", "xyz"});
+        when(hasOnlyOneValue.fieldNames()).thenReturn(new String[]{"InvalidField", "field2"});
         hasOnlyOneValueValidator.initialize(hasOnlyOneValue);
 
         CustomRequest request = CustomRequest.builder()
-                .abc("hky")
-                .xyz("xyz")
+                .field1("field1")
+                .field2("field2")
                 .build();
         assertThrows(NullPointerException.class, () -> hasOnlyOneValueValidator.isValid(request, context));
     }
